@@ -1,0 +1,30 @@
+Database: db_usermgmt
+Entity: users
+    Attributes:
+        - id
+        - fullname
+        - phone
+        - email
+        - password
+        - +3 (created_at, updated_at, status)
+
+Physical Design (Lets write query directly):
+    CREATE TABLE tbl_users (
+        id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+        fullname VARCHAR(30) NOT NULL,
+        phone VARCHAR(20) NULL,
+        email VARCHAR(50) UNIQUE NOT NULL,
+        password VARCHAR(200) NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+        updated_at TIMESTAMP NULL,
+        status BOOLEAN DEFAULT 0 NOT NULL
+    );
+
+#Collation: utf8_general_ci (older one to support unicode)
+            utf8mb4_general_ci (newer one)
+=================================
+Project:
+1) Requirement analysis/collection
+2) Design (Database design and UI/UX)
+3) Dynamic coding
+4) Implementation 
