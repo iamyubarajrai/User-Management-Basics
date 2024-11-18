@@ -26,5 +26,7 @@ Physical Design (Lets write query directly):
 Project:
 1) Requirement analysis/collection
 2) Design (Database design and UI/UX)
-3) Dynamic coding
+3) Dynamic coding (as a Controller)
 4) Implementation 
+
+Controller: major: CRUD

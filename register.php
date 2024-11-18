@@ -1,7 +1,11 @@
-<?php include "header.php"; ?>
+<?php session_start();
+include "header.php"; ?>
+<span class="msg-box">
+    <?php echo isset($_SESSION['msg']) ? $_SESSION['msg'] : ''; ?>
+</span>
     <div class="form-box">
         <h1>Register User</h1>
-        <form action="#" method="POST" name="register_form">
+        <form action="insert.php" method="POST" name="register_form">
             <div class="field-group">
                 <label for="fname">Fullname</label>
                 <input type="text" id="fname" name="fname" value="">
@@ -25,4 +29,5 @@
             <button type="submit" name="submit">Register</button>
         </form>
     </div>
-<?php include "footer.php"; ?>
+<?php include "footer.php"; 
+session_destroy(); ?>   
