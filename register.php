@@ -5,7 +5,7 @@ include "header.php"; ?>
 </span>
     <div class="form-box">
         <h1>Register User</h1>
-        <form action="insert.php" method="POST" name="register_form">
+        <form action="insert.php" method="POST" name="register_form" enctype="multipart/form-data">
             <div class="field-group">
                 <label for="fname">Fullname</label>
                 <input type="text" id="fname" name="fname" value="">
@@ -25,6 +25,10 @@ include "header.php"; ?>
             <div class="field-group">
                 <label for="cpwd">Confirm Password</label>
                 <input type="password" id="cpwd" name="cpwd" value="">
+            </div>
+            <div class="field-group">
+                <label for="photo">Photo</label>
+                <input type="file" id="photo" name="photo" value="">
             </div>
             <button type="submit" name="submit">Register</button>
         </form>

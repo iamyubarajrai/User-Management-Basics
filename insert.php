@@ -11,12 +11,25 @@ if(isset($_POST['submit'])) {
     $pwd = $_POST['pwd'];
     $cpwd = $_POST['cpwd'];
 
+    //if($_FILES['photo']['error'] != 0)
+    $photo = $_FILES['photo'];
+    $photo_type = $photo['type'];
+
     //echo $fullname; // checking data
     if($pwd != $cpwd) $_SESSION['msg'] = "Password not matched.";
     else { 
         $hashPwd = sha1($pwd);
-        $sql = "INSERT INTO tbl_users (fullname, phone, email, password) VALUES('$fullname', '$phone', '$uname', '$hashPwd')";
 
+        $photo_name = "";
+        $mime_types = ["image/jpeg", "image/jpg", "image/png", "image/gif"];
+        if(in_array($photo_type, $mime_types)) {
+            $photo_name = $photo['name'];
+            $photo_tmpname = $photo['tmp_name'];
+            move_uploaded_file($photo_tmpname, "./public/" . $photo_name);
+        }
+
+        $sql = "INSERT INTO tbl_users (fullname, phone, email, password, photo) VALUES('$fullname', '$phone', '$uname', '$hashPwd', '$photo_name')";
+    
         include_once "connection.php";
         $res = mysqli_query($conn, $sql);
         if($res) $_SESSION['msg'] = "Data inserted successfully.";

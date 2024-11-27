@@ -24,9 +24,9 @@ Physical Design (Lets write query directly):
             utf8mb4_general_ci (newer one)
 =================================
 Project:
-1) Requirement analysis/collection
-2) Design (Database design and UI/UX)
-3) Dynamic coding (as a Controller)
+1) Requirement analysis/collection 
+2) Design (Database design and UI/UX) 
+3) Dynamic coding (as a Controller) 
 4) Implementation 
 
 Controller: major: CRUD
