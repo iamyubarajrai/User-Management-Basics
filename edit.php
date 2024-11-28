@@ -22,6 +22,10 @@ if(isset($_GET['id'])):
                     <label for="uname">Username/Email</label>
                     <input type="text" id="uname" name="uname" value="<?php echo isset($row['email']) ? $row['email'] : ''; ?>" disabled>
                 </div>
+                <div class="field-group">
+                    <label for="photo">Photo</label>
+                    <input type="file" id="photo" name="photo" value="">
+                </div>
                 <button type="submit" name="submit">Update</button>
             </form>
         </div>

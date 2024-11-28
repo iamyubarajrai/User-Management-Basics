@@ -1,9 +1,12 @@
-<?php include "connection.php"; 
+<?php session_start();
+if(!isset($_SESSION['login_status']) && $_SESSION['login_status'] == true) header("location: ./index.php");
+else $_SESSION['msg'] = "Wow! Welcome.";
+
+include "connection.php"; 
 $sql = "SELECT id, phone, fullname, email FROM tbl_users";
 $res = mysqli_query($conn, $sql);
 
-include "header.php";
-session_start(); ?>
+include "header.php"; ?>
 <span class="msg-box">
     <?php echo isset($_SESSION['msg']) ? $_SESSION['msg'] : ''; ?>
 </span>
@@ -39,4 +42,4 @@ session_start(); ?>
         </table>
     </div>
 <?php include "footer.php"; 
-session_destroy(); ?>
+$_SESSION['msg'] = ''; ?>
