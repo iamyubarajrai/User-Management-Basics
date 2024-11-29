@@ -1,5 +1,5 @@
 <?php session_start();
-if(!isset($_SESSION['login_status']) && $_SESSION['login_status'] == true) header("location: ./index.php");
+if(!isset($_SESSION['login_status']) && $_SESSION['login_status'] == false) header("location: ./index.php");
 else $_SESSION['msg'] = "Wow! Welcome.";
 
 include "connection.php"; 
@@ -7,9 +7,10 @@ $sql = "SELECT id, phone, fullname, email FROM tbl_users";
 $res = mysqli_query($conn, $sql);
 
 include "header.php"; ?>
-<span class="msg-box">
-    <?php echo isset($_SESSION['msg']) ? $_SESSION['msg'] : ''; ?>
-</span>
+    <span class="msg-box">
+        <?php echo isset($_SESSION['msg']) ? $_SESSION['msg'] : ''; ?>
+    </span>
+    <a href="./logout.php" class="btn btn--danger">Logout</a>
     <div class="data-box">
         <h1>All Users</h1>
         <table border="1" cellspacing="0" cellpadding="6">
