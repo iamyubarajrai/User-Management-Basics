@@ -23,10 +23,13 @@ if($res && ($res->num_rows > 0)):
         </td>
     </tr>
     <?php endwhile; 
-else: ?>
+else:  
+    if($_SESSION['no_data'] == false): ?>
     <tr>
         <td colspan="5">No more data.</td>
     </tr>
-<?php endif; ?>
+<?php endif;
+    $_SESSION['no_data'] = true;
+endif; ?>
 
 <!-- ob_get, <<<HTML -->
