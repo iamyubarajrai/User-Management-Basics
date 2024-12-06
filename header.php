@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>User Management</title>
     <link href="style.css" rel="stylesheet" type="text/css">
+    <!-- jQuery is a library of JavaScript for minimal coding. -->
+    <script src="./public/jquery.min.js"></script>
 </head>
 <body>
     <header id="header">

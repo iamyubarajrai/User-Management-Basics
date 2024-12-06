@@ -3,9 +3,10 @@ if(!isset($_SESSION['login_status']) && $_SESSION['login_status'] == false) head
 else $_SESSION['msg'] = "Wow! Welcome.";
 
 include "connection.php"; 
-$sql = "SELECT id, phone, fullname, email FROM tbl_users";
+$sql = "SELECT id, phone, fullname, email FROM tbl_users LIMIT 1";
 $res = mysqli_query($conn, $sql);
 
+$id = [];
 include "header.php"; ?>
     <span class="msg-box">
         <?php echo isset($_SESSION['msg']) ? $_SESSION['msg'] : ''; ?>
@@ -26,7 +27,9 @@ include "header.php"; ?>
             <tbody>
                 <?php $i = 0; 
                 while($row = mysqli_fetch_assoc($res)):
-                $i++; ?>
+                $i++; 
+                array_push($id, $row['id']);
+                $_SESSION['user_ids'] = [$row['id']]; ?>
                     <pre><?php //print_r($row); //checking data ?></pre>
                 <tr>
                     <td><?php echo $i; ?></td>
@@ -41,6 +44,26 @@ include "header.php"; ?>
                 <?php endwhile; ?>
             </tbody>
         </table>
+        <a href="#" class="js-load" title="Load More">Load More</a>
     </div>
+    <script>
+        let jsLoad = jQuery(".js-load"),
+            dataBox = jQuery(".data-box tbody");
+        jsLoad.on("click", (e) => {
+            e.preventDefault();//prevents page reload
+            $.ajax({
+                url: "/picusermgmt/ajax.php",
+                method: "GET",
+                data: {id: <?php echo json_encode($id); ?>},
+                success: function(res) {
+                    dataBox.append(res);
+                    console.log(res); 
+                },
+                error: function(err) {
+                    console.log(err); 
+                }
+            });
+        });
+    </script>
 <?php include "footer.php"; 
 $_SESSION['msg'] = ''; ?>
